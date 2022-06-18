@@ -36,7 +36,9 @@ Python 3 script for creating the parameters required for a unique SHA256 microcu
 
 ### Examples
 Create the original genesis hash found in Bitcoin
+    
     python genesis.py -t 1231006505 -n 2083236893
+    
     output: 
         algorithm: SHA256
         merkle hash: 4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b
@@ -48,7 +50,9 @@ Create the original genesis hash found in Bitcoin
         Genesis Hash: 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
 
 Create a new microcurrency genesis hash (e.g. Arizona)
+    
     python genesis.py -z "Arizona Republic Jun/17/2022 Diamondbacks use long ball, small ball to thump Twins in series opener" -t 1655529247 -n 2140992447
+    
     output: 
         algorithm: SHA256
         merkle hash: 68ddfae438d132fc0dbab33ec4cad19a0f6c3c86232db68d8a3118aa183fc484
