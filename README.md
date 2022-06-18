@@ -65,7 +65,7 @@ Create a new microcurrency genesis hash (e.g. Arizona)
 
 
 ### Running on Debian
-Recommended to initial multiple instances simultaneously to find a new genesis faster    
+Recommended to run multiple instances simultaneously to find a new genesis faster    
     
     sudo apt-get -y install git-core
     git clone https://github.com/satoshiware/genesis.git ~/genesis
