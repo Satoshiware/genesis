@@ -35,6 +35,9 @@ def get_args():
 
 
 def create_input_script(psz_timestamp):
+    if len(psz_timestamp) > 91:
+        sys.exit('error: timestamp has ' + str(len(psz_timestamp)) + ' characters! It must be 91 characters or less.')
+
     psz_prefix = ""
     if len(psz_timestamp) > 76:  # Use OP_PUSHDATA1 if required
         psz_prefix = '4c'
