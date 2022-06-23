@@ -124,6 +124,7 @@ def print_block_info(options, hash_merkle_root):
     print("pubkey: " + options.pubkey)
     print("time: " + str(options.time) + " (" + time.ctime(options.time) + ")")
     print("bits: " + str(hex(options.bits)))
+    print("value: " + str(options.value))
 
 
 def announce_found_genesis(genesis_hash, nonce):
