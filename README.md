@@ -52,18 +52,18 @@ Create the original genesis hash found in Bitcoin
 
 Create a new microcurrency genesis hash (e.g. Arizona)
     
-    python genesis.py -z "AZ Republic Jun/17/2022 Diamondbacks use long ball, small ball to thmp Twins in series open" -t 1655529247 -n 1882096447
+    python genesis.py -z "AZ Republic Jun/17/2022 Diamondbacks use long ball, small ball to thmp Twins in series open" -t 1655529249 -n 2444673783 -v 3200000000
     
     output:
         algorithm: SHA256
-        merkle hash: 849aa7afffbd47f55303e4d098652a2c80ed44a30b0c52e0c6410d2681dd1355
+        merkle hash: 0ead7f4713c1dd6a0ac5a824ef8c1282b003fe2e1d1b8a3ffd33296cd6a5983c
         pszTimestamp: AZ Republic Jun/17/2022 Diamondbacks use long ball, small ball to thmp Twins in series open
         pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
-        time: 1655529247
+        time: 1655529249
         bits: 0x1d00ffff
-        value: 5000000000
-        nonce: 1882096447
-        Genesis Hash: 00000000c3570d460c767db5d90407254687f1cee1ee4efb419de81ab71ed996
+        value: 3200000000
+        nonce: 2444673783
+        Genesis Hash: 0000000056c6bab86aa8ec21a78667e5b830165b7cb48970790acc0e5681271b
 
 
 ### Running on Debian
