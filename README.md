@@ -1,6 +1,7 @@
 # Genesis
 Python 3 script for creating the parameters required for a unique SHA256 microcurrency genesis block.
 
+Forked from lhartikk/GenesisH0 @ dcbe9b9
 
 ### Options
     Usage: genesis.py [options]
