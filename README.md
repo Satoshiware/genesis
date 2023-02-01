@@ -67,10 +67,12 @@ Create a new microcurrency genesis hash (e.g. Arizona)
         Genesis Hash: 0000000056c6bab86aa8ec21a78667e5b830165b7cb48970790acc0e5681271b
 
 
-### Running on Debian
+### Running on Debian 11+
 Recommended to run multiple instances simultaneously to find a new genesis faster    
     
-    sudo apt-get -y install git-core
-    git clone https://github.com/satoshiware/genesis.git ~/genesis
+    sudo apt-get -y update
+    sudo apt-get -y upgrade
+    sudo apt-get -y install git-core python3
+    git clone https://github.com/satoshiware/genesis
     cd ~/genesis
-    python3 genesis.py -z "Local newspaper of the day TODAY'S DATE Something intersting that happened"
+    python3 genesis.py -z "Local newspaper of the day TODAY'S DATE Something interesting that happened"
