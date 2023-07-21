@@ -18,7 +18,12 @@ def main():
 
     block_header = create_block_header(hash_merkle_root, options.time, options.bits, options.nonce)
     genesis_hash, nonce = generate_hash(block_header, options.nonce, options.bits)
-    announce_found_genesis(genesis_hash, nonce)
+    while (announce_found_genesis(genesis_hash, nonce)):
+        options.time += 1
+        options.nonce = 0
+        print_block_info(options, hash_merkle_root)
+        block_header = create_block_header(hash_merkle_root, options.time, options.bits, options.nonce)
+        genesis_hash, nonce = generate_hash(block_header, options.nonce, options.bits)
 
 
 def get_args():
@@ -83,7 +88,7 @@ def create_block_header(hash_merkle_root, generation_time, bits, nonce):
 
 
 def generate_hash(data_block, start_nonce, bits):
-    print("Searching for genesis hash..")
+    print("\nSearching for genesis hash..")
     nonce = start_nonce
     last_updated = time.time()
     target = (bits & 0xffffff) * 2 ** (8 * ((bits >> 24) - 3))  # https://en.bitcoin.it/wiki/Difficulty
@@ -112,8 +117,7 @@ def calculate_hashrate(nonce, last_updated):
         now = time.time()
         hashrate = round(1000000 / (now - last_updated))
         generation_time = round(pow(2, 32) / hashrate / 3600, 1)
-        sys.stdout.write(
-            "\r%s hash/s, estimate: %s h, nonce: %s (max = 4294967295)" % (str(hashrate), str(generation_time), nonce))
+        sys.stdout.write("\r%s hash/s, estimate: %s h, nonce: %s (max = 4294967295)        " %(str(hashrate), str(generation_time), nonce))
         sys.stdout.flush()
         return now
     else:
@@ -121,7 +125,7 @@ def calculate_hashrate(nonce, last_updated):
 
 
 def print_block_info(options, hash_merkle_root):
-    print("algorithm: SHA256")
+    print("\nalgorithm: SHA256")
     print("merkle hash: " + hash_merkle_root[::-1].hex())
     print("pszTimestamp: " + options.timestamp)
     print("pubkey: " + options.pubkey)
@@ -135,8 +139,10 @@ def announce_found_genesis(genesis_hash, nonce):
         print("\nGenesis Hash Found!")
         print("nonce: " + str(nonce))
         print("Genesis Hash: " + genesis_hash.hex())
+        return False
     else:
         print("\nGenesis Hash NOT Found! Sorry.")
+        return True
 
 
 main()
