@@ -94,12 +94,12 @@ def generate_hash(data_block, start_nonce, bits):
     target = (bits & 0xffffff) * 2 ** (8 * ((bits >> 24) - 3))  # https://en.bitcoin.it/wiki/Difficulty
     while True:
         block_hash = generate_hashes_from_block(data_block)
-        last_updated = calculate_hashrate(nonce, last_updated)
+        last_updated = calculate_hashrate(nonce, last_updated, target)
         if is_genesis_hash(block_hash, target):
             return block_hash, nonce
         else:
             nonce = nonce + 1
-            if nonce > 0xFFFFFFFF:
+            if nonce > 0xffffffff:
                 return b'\x00', 0
             data_block = data_block[0:len(data_block) - 4] + struct.pack('<I', nonce)
 
@@ -112,11 +112,11 @@ def is_genesis_hash(golden_hash, target):
     return int.from_bytes(golden_hash, 'big') < target
 
 
-def calculate_hashrate(nonce, last_updated):
+def calculate_hashrate(nonce, last_updated, target):
     if nonce % 1000000 == 999999:
         now = time.time()
         hashrate = round(1000000 / (now - last_updated))
-        generation_time = round(pow(2, 32) / hashrate / 3600, 1)
+        generation_time = round(((0xffff << 208) / target) * 2**32 / hashrate / 3600, 1)
         sys.stdout.write("\r%s hash/s, estimate: %s h, nonce: %s (max = 4294967295)        " %(str(hashrate), str(generation_time), nonce))
         sys.stdout.flush()
         return now
