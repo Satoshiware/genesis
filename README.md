@@ -68,7 +68,8 @@ Create a new microcurrency genesis hash (e.g. Arizona)
 
 
 ### Running on Debian 11+
-Recommended to run multiple instances simultaneously to find a new genesis faster    
+Recommended to run multiple instances simultaneously to find a new genesis faster<br>
+Use the "run.sh" script (included in this repository) for managing large quantity of instances
     
     sudo apt-get -y update
     sudo apt-get -y upgrade
