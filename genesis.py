@@ -19,7 +19,7 @@ def main():
     block_header = create_block_header(hash_merkle_root, options.time, options.bits, options.nonce)
     genesis_hash, nonce = generate_hash(block_header, options.nonce, options.bits)
     while (announce_found_genesis(genesis_hash, nonce)):
-        options.time += 1
+        options.time += options.interval
         options.nonce = 0
         print_block_info(options, hash_merkle_root)
         block_header = create_block_header(hash_merkle_root, options.time, options.bits, options.nonce)
@@ -28,6 +28,7 @@ def main():
 
 def get_args():
     parser = OptionParser()
+    parser.add_option("-i", "--interval", dest="interval", default=1, type="int", help="amount (seconds) added to time when the nonce rolls over")
     parser.add_option("-t", "--time", dest="time", default=int(time.time()), type="int", help="the (unix) time when the genesisblock is created")
     parser.add_option("-z", "--timestamp", dest="timestamp", default="The Times 03/Jan/2009 Chancellor on brink of second bailout for banks", type="string", help="the pszTimestamp found in the coinbase of the genesisblock")
     parser.add_option("-n", "--nonce", dest="nonce", default=0, type="int", help="the first value of the nonce that will be incremented when searching the genesis hash")
