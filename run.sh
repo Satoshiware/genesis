@@ -15,7 +15,7 @@ value=50
 bits=0x1d00ffff
 
 mkdir ~/output
-for (( i=${offset}; i<${instances}; i++ ))
+for (( i=${offset}; i<$((instances + offset)); i++ ))
 do
         (python3 ~/genesis/genesis.py -i ${interval} -t $((time + i)) -z "${timestamp}" -v ${value} -b ${bits} > ~/output/out${i}; pkill python3; bash ${alertscript} ~/output/out${i}) &
 done
