@@ -15,7 +15,6 @@ def main():
 
     # Print Results
     print("\ntime: " + str(options.time) + " seconds (time between blocks)")
-    print("blocks: " + str(options.blocks) + " (number of blocks per difficulty epoch)")
     print("bits: " + hex_32bit(bits))
     print("target: " + hex_256bit(target))
     print("difficulty: " + str(difficulty))
@@ -25,7 +24,6 @@ def get_args():
     parser = OptionParser()
     parser.add_option("-t", "--time", dest="time", default=600, type="int", help="time between blocks (seconds)")
     parser.add_option("-r", "--hashrate", dest="hashrate", default=(2**32)/600, type="int", help="starting hashrate (h/s)")
-    parser.add_option("-b", "--blocks", dest="blocks", default=2016, type="int", help="number of blocks per difficulty epoch")
 
     (options, args) = parser.parse_args()
     return options
