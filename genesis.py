@@ -48,7 +48,7 @@ def create_input_script(psz_timestamp):
         sys.exit('error: timestamp has ' + str(len(psz_timestamp)) + ' characters! It must have 16 characters or more.')
 
     psz_prefix = ""
-    if len(psz_timestamp) > 76:  # Use OP_PUSHDATA1 if required
+    if len(psz_timestamp) > 75:  # Use OP_PUSHDATA1 if required
         psz_prefix = '4c'
 
     return bytes.fromhex('04ffff001d0104' + psz_prefix + hex(len(psz_timestamp))[2:] + psz_timestamp.encode('utf-8').hex())
